@@ -23,7 +23,7 @@ def home():
 def all_routes(path):
     return redirect('/')
 
-@app.route('/apiv1/stream/gettoken', methods=['POST'])
+@app.route('/apiv1/getstream/token', methods=['GET'])
 @cross_origin()
 def get_stream_token():
     try:
