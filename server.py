@@ -1,11 +1,13 @@
 import os
 from flask import Flask, send_from_directory, render_template, redirect, request, jsonify
+from flask_cors import CORS, cross_origin
 import stream_chat
 import os
 from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 port = int(os.environ.get("PORT", 5000))
 
@@ -22,6 +24,7 @@ def all_routes(path):
     return redirect('/')
 
 @app.route('/getstream/token', methods=['POST'])
+@cross_origin()
 def get_stream_token():
     try:
         data = request.get_json()
@@ -37,6 +40,7 @@ def get_stream_token():
         return None;
 
 @app.route('/api/me', methods=['GET'])
+@cross_origin()
 def get_user():
     try: 
         return {
