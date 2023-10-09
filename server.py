@@ -27,13 +27,13 @@ def all_routes(path):
 @cross_origin()
 def get_stream_token():
     try:
-        data = request.get_json()
+        userId = req.auth.sessionClaims.userId
 
-        if 'user_id' not in data or not data['user_id']:
+        if not userId:
             return {"error": "Missing user_id"}
 
         server_client = stream_chat.StreamChat(os.environ.get("app_id"), os.environ.get("stream_secret"))
-        token = server_client.create_token(data['user_id'])
+        token = server_client.create_token(user_id)
 
         return {"token": token}
     except Exception:
