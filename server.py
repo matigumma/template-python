@@ -23,7 +23,7 @@ def home():
 def all_routes(path):
     return redirect('/')
 
-@app.route('/getstream/token', methods=['POST'])
+@app.route('/apiv1/stream/gettoken', methods=['POST'])
 @cross_origin()
 def get_stream_token():
     try:
@@ -39,7 +39,7 @@ def get_stream_token():
     except Exception:
         return None;
 
-@app.route('/api/me', methods=['GET'])
+@app.route('/apiv1/api/me', methods=['GET'])
 @cross_origin()
 def get_user():
     try: 
